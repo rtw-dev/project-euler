@@ -10,4 +10,4 @@ fn main() {
         }
         println!("{}", sum);
     }
-}}
+}
