@@ -1,0 +1,6 @@
+[package]
+name = "rtw-dev-project-euler"
+version = "0.0.1"
+repository = "https://github.com/rtw-dev/project-euler"
+
+
