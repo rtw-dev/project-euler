@@ -8,6 +8,6 @@ fn main() {
             //println!("{}", n);
             sum = sum + n;
         }
-        println!("{}", sum);
     }
+    println!("{}", sum);
 }
