@@ -1,4 +1,5 @@
 fn main() {
+    // Find the sum of all the multiples of  or  below 1000.
     let mut sum = 0;
     for n in 1..1000 {
         if n % 3 == 0 {
