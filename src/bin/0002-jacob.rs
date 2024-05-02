@@ -1,8 +1,7 @@
-fn main() {
-    /*
-    Find the sum of the even-valued Fibonnaci numbers below four million.
-    */
+// https://projecteuler.net/problem=2
+// Find the sum of the even-valued Fibonnaci numbers below four million.
 
+fn main() {
     // We will use three variables to store the last two and the next Fibonnaci numbers.
     let mut prev1 = 1;
     let mut prev2 = 2;
