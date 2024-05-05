@@ -5,17 +5,17 @@
 extern crate indicatif;
 use indicatif::ProgressBar;
 
-const BOUND: i64 = 2000000;
-const PROGRESS_BAR_WIDTH: i64 = 50;
+const BOUND: u64 = 2000000;
+const PROGRESS_BAR_WIDTH: u64 = 50;
 
 fn main() {
     /*
     Strategy: Will use same method as in solution for problem 7 to generate the primes
     */
     // We need to start with the first prime
-    let mut primes: Vec<i64> = vec![2];
+    let mut primes: Vec<u64> = vec![2];
     // We will start with the integer larger than our cuurent largest prime
-    let mut number: i64 = 3;
+    let mut number: u64 = 3;
     // Loop until we have the primes up to 2 million
     let pb = ProgressBar::new(BOUND as u64);
     loop {
@@ -45,5 +45,5 @@ fn main() {
     }
     // Output our answer
     pb.finish_with_message("done");
-    println!("Simple solution: {}", primes.iter().sum::<i64>());
+    println!("Simple solution: {}", primes.iter().sum::<u64>());
 }

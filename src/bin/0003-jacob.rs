@@ -1,7 +1,8 @@
 // https://projecteuler.net/problem=3
 // What is the largest prime factor of the number 600,851,475,153?
+// Answer: 4613732
 
-const NUMBER: i64 = 600851475143;
+const NUMBER: u64 = 600851475143;
 
 fn main() {
     /*
@@ -9,7 +10,7 @@ fn main() {
     Note: This method is known to be slow for large numbers!
     */
 
-    let mut factors: Vec<i64> = Vec::new();
+    let mut factors: Vec<u64> = Vec::new();
     let mut n = NUMBER;
     let mut divisor = 2;
 

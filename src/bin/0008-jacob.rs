@@ -25,9 +25,10 @@ What is the value of this product?
 71636269561882670428252483600823257530420752963450
 
 */
+// Answer:
 
 // It is a big number so we will initially represent it as a string
-const ADJACENCY: i32 = 13;
+const ADJACENCY: u32 = 13;
 const INPUT: &str = "
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -57,7 +58,7 @@ fn main() {
     and then considering the next 13 digits, and so on.
     */
 
-    let mut max_product: i64 = 0;
+    let mut max_product: u64 = 0;
     let mut max_product_digits: Vec<char> = Vec::new();
 
     // Our const INPUT string above has newlines that we need to remove
@@ -67,9 +68,9 @@ fn main() {
         // Get the current window
         let window: Vec<char> = input[start..start + 13].chars().collect();
         // Compute the product
-        let mut product = window[0].to_digit(10).unwrap() as i64;
+        let mut product = window[0].to_digit(10).unwrap() as u64;
         for c in &window[1..] {
-            product *= c.to_digit(10).unwrap() as i64;
+            product *= c.to_digit(10).unwrap() as u64;
         }
         //println!("{:?} - {:?}", product, window);
         if product > max_product {

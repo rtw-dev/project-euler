@@ -1,7 +1,8 @@
 // https://projecteuler.net/problem=5
 // What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+// Answer: 232792560
 
-const BOUND: i64 = 20;
+const BOUND: u64 = 20;
 
 fn main() {
     /*
@@ -12,16 +13,16 @@ fn main() {
     */
 
     // Recursive approach is easy to understand
-    let numbers: Vec<i64> = (1..=BOUND).collect();
-    let solution_by_recursion: i64 = lcm_of_numbers(numbers);
+    let numbers: Vec<u64> = (1..=BOUND).collect();
+    let solution_by_recursion: u64 = lcm_of_numbers(numbers);
     println!("Simple solution: {}", solution_by_recursion);
 
     // Folding solution requires a bit more thought
-    let solution_by_folding: i64 = (1..=BOUND).fold(1, |acc, n| (acc * n) / gcd(acc, n));
+    let solution_by_folding: u64 = (1..=BOUND).fold(1, |acc, n| (acc * n) / gcd(acc, n));
     println!("Better solution: {}", solution_by_folding);
 }
 
-fn lcm_of_numbers(numbers: Vec<i64>) -> i64 {
+fn lcm_of_numbers(numbers: Vec<u64>) -> u64 {
     // If only two numbers in the list then we can use our lcm function
     if numbers.len() == 2 {
         return lcm(numbers[0], numbers[1]);
@@ -32,11 +33,11 @@ fn lcm_of_numbers(numbers: Vec<i64>) -> i64 {
     return lcm(head, lcm_of_numbers(tail.to_vec()));
 }
 
-fn lcm(a: i64, b: i64) -> i64 {
+fn lcm(a: u64, b: u64) -> u64 {
     return a * b / gcd(a, b);
 }
 
-fn gcd(a: i64, b: i64) -> i64 {
+fn gcd(a: u64, b: u64) -> u64 {
     if b == 0 {
         return a;
     }

@@ -1,5 +1,6 @@
 // https://projecteuler.net/problem=4
 // Find the largest palindrome made from the product of two 3-digit numbers.
+// Answer: 906609
 
 fn main() {
     /*
@@ -8,9 +9,9 @@ fn main() {
 
     // Define a way to store the palindromes we find
     struct Palindrome {
-        i: i32,
-        j: i32,
-        product: i32,
+        i: u32,
+        j: u32,
+        product: u32,
     }
     let mut palindromes: Vec<Palindrome> = Vec::new();
 
@@ -32,7 +33,7 @@ fn main() {
     );
 }
 
-fn is_palindrome(number: i32) -> bool {
+fn is_palindrome(number: u32) -> bool {
     /*
     Strategy: convert the number to a string, reverse it,
     and then check if the reversed string is equal to the original string.

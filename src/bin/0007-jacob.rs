@@ -10,7 +10,7 @@ fn main() {
     */
 
     // We need to start with the first primes
-    let mut primes: Vec<i64> = vec![2];
+    let mut primes: Vec<u64> = vec![2];
     // We will start with the integer larger than our cuurent largest prime
     let mut number = 3;
     // We will keep generating primes until we have the 10,001st
