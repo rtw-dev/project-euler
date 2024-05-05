@@ -28,7 +28,6 @@ fn main() {
         }
         // Check if the current number is prime by trial division
         let mut is_prime = true;
-        // We don't include the first prime (1) because it divides into every number
         for prime in &primes {
             // If any known prime divides the current number, then it is not prime
             if number % prime == 0 {
