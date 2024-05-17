@@ -56,9 +56,9 @@ fn main() {
       3. Iterate through the grid data structure and find the largest product
     */
 
-    let grid: Grid = parse_grid();
-    println!("{:?}", get_item(&grid,4, 7));
-    let up_product = up_product(&grid, 4, 7);
+    let cells: Cells = parse_input(INPUT);
+    println!("{:?}", cells[4][7]);
+    let up_product = up_product(&cells, 4, 7);
     match up_product {
         None => {},
         Some(product) => {},
@@ -74,18 +74,12 @@ fn main() {
 
 type Cells = Vec<Vec<i32>>;
 
-struct Grid {
-    cells: Cells,
-    row_count: usize,
-    col_count: usize,
+struct Direction2d {
+    x: isize,
+    y: isize,
 }
 
-struct Direction {
-    x: i8,
-    y: i8,
-}
-
-fn parse_grid() -> Grid {
+fn parse_input(input: &str) -> Cells {
     /*
     Strategy: Iterate over the lines of the input, splitting each line into separate values
     which are then parsed into the correct u32 type, and then finally collecting everything
@@ -100,37 +94,36 @@ fn parse_grid() -> Grid {
                 .collect()
         })
         .collect();
-    let row_count = cells.len();
-    let col_count = cells[0].len();
-    return Grid {cells, row_count, col_count};
+    return cells;
 }
 
-fn get_item(grid: &Grid, row: usize, col: usize) -> i32 {
-    return grid.cells[row][col];
-}
-
-fn calculate_product(grid: &Grid, d: Direction) -> i32 {
+fn calculate_product(cells: &Cells, start_row: usize, start_col: usize, d: Direction2d) -> i32 {
     /*
     Strategy: We will not call this function directly.
     It will be used by e.g. by up_product() to do the heavy lifting.
     Responsibility for ensuring bounds are not violated rests with the caller.
     */
-    let mut product: i32 = get_item[d.x as usize][d.y as usize];
-    for i in 1..HOW_MANY as usize{
-        for j in 1.. HOW_MANY as usize {
-            product *= grid.cells[d.x + i*HOW_MANY][d.y + j*HOW_MANY];
+    let mut product: i32 = cells[start_row][start_col];
+    for i in 1..HOW_MANY {
+        for j in 1.. HOW_MANY {
+            // TODO: What happens if we go out of bounds?
+            // TODO: Should do bounds checking here...
+            // TODO: these type conversions hint that I am going about things the wrong way
+            let row = start_row as isize + i as isize * d.x;
+            let col = start_col as isize + j as isize * d.y;
+            product *= cells[row as usize][col as usize];
         }
     }
     return product;
 }
 
-fn up_product(grid: &Grid, row: usize, col: usize) -> Option<i32> {
-    if row < HOW_MANY {
+fn up_product(cells: &Cells, start_row: usize, start_col: usize) -> Option<i32> {
+    if start_row < HOW_MANY {
         // We will not remain in bounds
         None
     } else {
         // Calculate the product and return it
-        let product = calculate_product(&grid, Direction {x:-1,y:0});
+        let product = calculate_product(&cells, start_row, start_col,Direction2d {x:-1,y:0});
         Some(product)
     }
 }
